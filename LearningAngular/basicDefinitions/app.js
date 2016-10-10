@@ -4,7 +4,7 @@
 var myModule = angular.module('Angello', []);
 
 /* 
-    Best practice - devide features into sub-modules and then inject them into the main app module.
+    Best practice - divide features into sub-modules and then inject them into the main app module.
     By doing this it is easier to move a module and test it.
  */
 
