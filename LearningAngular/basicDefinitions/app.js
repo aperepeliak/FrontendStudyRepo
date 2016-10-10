@@ -136,6 +136,6 @@ myModule.directive('story', function () {
     return {
         scope: true,
         replace: true, // means that the template we defined replaces the element the directive was defined on
-        template: '<div><h4>{{story.title}}</h4></div><p>{{story.description}}</p>'
+        template: '<div><h4>{{story.title}}</h4><p>{{story.description}}</p></div>'
     };
 });
