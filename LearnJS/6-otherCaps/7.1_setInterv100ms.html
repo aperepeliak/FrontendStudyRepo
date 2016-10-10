@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function printNumbersInterval() {
+            var timerID = setInterval(func, 100);
+
+            var counter = 1;
+
+            function func() {
+                console.log(counter++);
+                if (counter > 20) {
+                    clearInterval(timerID);
+                }
+            }
+        }
+
+        printNumbersInterval();
+    </script>
+</body>
+
+</html>

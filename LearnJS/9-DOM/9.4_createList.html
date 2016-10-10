@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Создание списка</h1>
+
+    <script>
+        var list = document.createElement('ul');
+
+        document.body.appendChild(list);
+
+        do {
+            var query = prompt('Enter li -> ', '');
+            if (query) {
+                var li = document.createElement('li');
+                li.textContent = query;
+                list.appendChild(li);
+            }
+        } while (query);
+    </script>
+</body>
+
+</html>

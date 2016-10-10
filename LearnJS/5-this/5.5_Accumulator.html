@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Accumulator(startingValue) {
+            this.value = startingValue || 0;
+
+            this.read = function() {
+                this.value += +prompt('Enter a -> ', 0);
+            }
+        }
+
+        var acc = new Accumulator();
+
+        acc.read();
+        acc.read();
+
+        console.log('value =', acc.value);
+
+
+    </script>
+</body>
+
+</html>

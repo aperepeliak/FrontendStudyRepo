@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Format Date</title>
+</head>
+
+<body>
+    <script>
+        var d = new Date(2000, 0, 30);
+        var d1 = new Date(2016, 11, 1);
+
+        function formatDate(date) {
+            var year = date.getFullYear().toString().substring(2);
+            var month = date.getMonth() < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+            var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            var res = day + '.' + month + '.' + year;
+            return res; 
+        }
+
+        console.log(formatDate(d));
+        console.log(formatDate(d1));
+    </script>
+</body>
+
+</html>

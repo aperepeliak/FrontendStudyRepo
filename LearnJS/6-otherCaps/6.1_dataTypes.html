@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function formatDate(date) {
+
+            var type = typeof date;
+
+            switch (type) {
+                case 'string':
+                    var parseDate = date.split('-');
+                    var year = parseDate[0].slice(2);
+                    var month = +parseDate[1] < 10 ? '0' + parseDate[1] : parseDate[1];
+                    var day = +parseDate[2] < 10 ? '0' + +parseDate[2] : parseDate[2];
+
+                    return day + '.' + month + '.' + year;
+
+
+                case 'number':
+                    var newDate = new Date(date * 1000);
+
+                    var year = newDate.getFullYear().toString().slice(2);
+                    var month = (newDate.getMonth() + 1) < 10 ? '0' + (newDate.getMonth() + 1) : newDate.getMonth() + 1;
+                    var day = newDate.getDate() < 10 ? '0' + newDate.getDate() : newDate.getDate();
+
+                    return day + '.' + month + '.' + year;
+
+
+                case 'object':
+
+                    if (Array.isArray(date)) {
+                        var year = date[0].toString().slice(2);
+                        var month = (date[1] + 1) < 10 ? '0' + (date[1] + 1) : date[1] + 1;
+                        var day = date[2] < 10 ? '0' + date[2] : date[2];
+                        return day + '.' + month + '.' + year;
+                    } else {
+                        var year = date.getFullYear().toString().slice(2);
+                        var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+                        var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+
+                        return day + '.' + month + '.' + year;
+                    }
+
+            }
+        }
+
+        console.log(formatDate('2011-10-02')); // 02.10.11
+        console.log(formatDate(1234567890)); // 14.02.09
+        console.log(formatDate([2014, 0, 1])); // 01.01.14
+        console.log(formatDate(new Date(2014, 0, 1))); // 01.01.14
+
+        // learnJS version (more elegant)
+        function formatDate2(date) {
+            if (typeof date == 'number') {
+                // перевести секунды в миллисекунды и преобразовать к Date
+                date = new Date(date * 1000);
+            } else if (typeof date == 'string') {
+                // строка в стандартном формате автоматически будет разобрана в дату
+                date = new Date(date);
+            } else if (Array.isArray(date)) {
+                date = new Date(date[0], date[1], date[2]);
+            }
+            // преобразования для поддержки полиморфизма завершены, 
+            // теперь мы работаем с датой (форматируем её)
+
+            return date.toLocaleString("ru", {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+            });
+
+            /*
+            // можно и вручную, если лень добавлять в старый IE поддержку локализации
+            var day = date.getDate();
+            if (day < 10) day = '0' + day;
+            
+            var month = date.getMonth() + 1;
+            if (month < 10) month = '0' + month;
+            
+            // взять 2 последние цифры года
+            var year = date.getFullYear() % 100;
+            if (year < 10) year = '0' + year;
+            
+            var formattedDate = day + '.' + month + '.' + year;
+            
+            return formattedDate;
+            */
+        }
+    </script>
+</body>
+
+</html>

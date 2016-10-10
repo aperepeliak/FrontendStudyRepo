@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function argSum() {
+            var res = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                res += +arguments[i];
+            }
+            return res;
+        }
+
+        console.log(argSum(5));
+        console.log(argSum(5, 1));
+        console.log(argSum(5, 1, 10));
+        console.log(argSum(5, 1, 10, '1'));
+        console.log(argSum(5, 1, 10, '1', true));
+    </script>
+
+</body>
+
+</html>

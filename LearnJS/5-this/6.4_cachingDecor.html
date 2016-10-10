@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function f(x) {
+            return Math.random() * x; // random для удобства тестирования
+        }
+
+        function makeCaching(f) {
+
+            var cached = 0;
+            var res = 0;
+
+            return function() {
+                if (cached === arguments[0]) {
+                    return res;
+                }
+                cached = arguments[0];
+                res = f.call(this, cached);
+                return res;
+            }
+        }
+
+        f = makeCaching(f);
+
+        var a, b;
+
+        a = f(1);
+        b = f(1);
+        console.log(a);
+        console.log(b);
+        console.log(a == b); // true (значение закешировано)
+
+        b = f(2);
+        console.log(a == b); // false, другой аргумент => другое значение
+
+        // learnJS version (more correct)
+        function makeCaching2(f) {
+            var cache = {};
+
+            return function(x) {
+                if (!(x in cache)) {
+                    cache[x] = f.call(this, x);
+                }
+                return cache[x];
+            };
+        }
+    </script>
+</body>
+
+</html>

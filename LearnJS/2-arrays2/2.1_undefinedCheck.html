@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Undef check</title>
+</head>
+
+<body>
+
+    <script>
+        function f(x) {
+            // ..ваш код..
+            // выведите 1, если первый аргумент есть, и 0 - если нет
+            if (arguments.length) {
+                console.log('res = ', 1);
+            } else {
+                console.log('res = ', 0);
+            }
+        }
+
+        f(undefined); // 1
+        f(); // 0
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Unique array</title>
+</head>
+
+<body>
+
+    <script>
+        var strings = ["кришна", "кришна", "харе", "харе",
+            "харе", "харе", "кришна", "кришна", "8-()"
+        ];
+
+        // my version
+        function unique(arr) {
+            var uniq = [];
+
+            for (var i = 0; i < arr.length; i++) {
+                if (uniq.length) {
+                    var f = true;
+                    for (var j = 0; j < uniq.length; j++) {
+                        if (arr[i] === uniq[j]) {
+                            f = false;
+                            break;
+                        }
+                    }
+                    if (f) {
+                        uniq.push(arr[i]);
+                    }
+                } else {
+                    uniq.push(arr[i]);
+                }
+            }
+            return uniq;
+        }
+
+        console.log(unique(strings));
+
+        // learnJS version (better one)
+        function unique2(arr) {
+            var obj = {};
+
+            for (var i = 0; i < arr.length; i++) {
+                var str = arr[i];
+                obj[str] = true; // запомнить строку в виде свойства объекта
+            }
+
+            return Object.keys(obj); // или собрать ключи перебором для IE8-
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>get date ago</title>
+</head>
+
+<body>
+    <script>
+        var date = new Date(2015, 0, 2);
+
+        function getDateAgo(date, days) {
+            var tmp = new Date(date);
+            tmp.setDate(tmp.getDate() - days);
+            return tmp.getDate();
+        }
+
+        console.log(date);
+        console.log(getDateAgo(date, 1));
+        console.log(getDateAgo(date, 2));
+        console.log(getDateAgo(date, 365));
+    </script>
+</body>
+
+</html>

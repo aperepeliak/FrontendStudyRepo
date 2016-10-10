@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var users = [{
+            name: 'Vasya',
+            surname: 'Ivanov',
+            age: 20
+        }, {
+            name: 'Petya',
+            surname: 'Sidorov',
+            age: 19
+        }, {
+            name: 'Masha',
+            surname: 'Petrova',
+            age: 18
+        }];
+
+        users.forEach(function(user) {
+            console.log(user.name);
+        });
+
+        function byField(field) {
+            return function(a, b) {
+                return a[field] > b[field];
+            }
+        }
+
+        console.log('sorting...');
+        users.sort(byField('age'));
+        users.forEach(function(user) {
+            console.log(user.name);
+        });
+    </script>
+</body>
+
+</html>

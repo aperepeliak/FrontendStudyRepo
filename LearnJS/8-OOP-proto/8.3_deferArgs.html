@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function.prototype.defer = function(ms) {
+
+        //     setTimeout(wrapper, ms);
+
+        //     function wrapper(func) {
+        //         return func.apply(null, arguments);
+        //     };
+        // }
+
+        //learnJS version
+        Function.prototype.defer = function(ms) {
+            var f = this;
+
+            return function() {
+                var args = arguments;
+                var context = this;
+
+                function func() {
+                    f.apply(context, args);
+                }
+
+                setTimeout(func, ms);
+            }
+        }
+
+        function f(a, b) {
+            console.log(a + b);
+        }
+
+        f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+    </script>
+</body>
+
+</html>

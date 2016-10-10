@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function makeBuffer() {
+            var buf = '';
+
+            function tmp(value) {
+                if (arguments.length == 0) {
+                    return buf;
+                }
+                buf += value;
+            }
+
+            // buffer cleaning
+            tmp.clear = function() {
+                buf = '';
+            }
+
+            return tmp;
+        }
+
+        var buffer = makeBuffer();
+
+        buffer('Замыкания');
+        buffer(' Использовать');
+        buffer(' Нужно!');
+
+        console.log(buffer());
+
+        console.log('clearing buffer...');
+        buffer.clear();
+
+        console.log(buffer());
+
+    </script>
+</body>
+
+</html>

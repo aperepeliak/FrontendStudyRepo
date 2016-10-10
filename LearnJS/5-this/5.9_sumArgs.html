@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sumArgs() {
+            var arr = [].slice.call(arguments);
+            return arr.reduce(function(a, b) {
+                return a + b;
+            });
+        }
+
+        // learnJS version 1
+        function sumArgs1() {
+            arguments.reduce = [].reduce;
+            return arguments.reduce(function(a, b) {
+                return a + b;
+            });
+        }
+
+        // learnJS version 2
+        function sumArgs2() {
+            // запустим reduce из массива напрямую
+            return [].reduce.call(arguments, function(a, b) {
+                return a + b;
+            });
+        }
+
+        console.log(sumArgs(1, 2, 3, 10));
+    </script>
+</body>
+
+</html>

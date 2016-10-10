@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .hide {
+            width: 200px;
+            height: 65px;
+            border-radius: 10px;
+            background-color: pink;
+            color: navy;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hide:focus {
+            outline: none;
+        }
+    </style>
+
+    <button class="hide">Hide me!</button>
+
+    <script>
+        var btn = document.querySelector('.hide');
+
+        btn.addEventListener('click', hide);
+
+        function hide() {
+            btn.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

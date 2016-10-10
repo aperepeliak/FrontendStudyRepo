@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Machine base class
+        function Machine(power) {
+            this._power = power;
+            this._enabled = false;
+
+            var self = this;
+
+            this.enable = function() {
+                self._enabled = true;
+            };
+
+            this.disable = function() {
+                self._enabled = false;
+            };
+        }
+
+        function Fridge(power) {
+
+            Machine.apply(this, arguments);
+
+            var food = [];
+
+            var parentDisable = this.disable;
+            this.disable = function() {
+                if (food.length) {
+                    throw new Error("There is food in the fridge!");
+                }
+                parentDisable();
+            }
+
+            this.addFood = function() {
+                if (!this._enabled) {
+                    throw new Error("The fridge is disabled.");
+                }
+                if ((food.length + arguments.length) > (this._power / 100)) {
+                    throw new Error("Trying to add more food than it can handle.");
+                }
+                for (var i = 0; i < arguments.length; i++) {
+                    food.push(arguments[i]);
+                }
+            };
+
+            this.getFood = function() {
+                return food.slice();
+            }
+
+            this.filterFood = function(func) {
+                return food.filter(func);
+            }
+
+            this.removeFood = function(item) {
+                // more elegant version from learnJS
+                var idx = food.indexOf(item);
+                if (idx != -1) food.splice(idx, 1);
+            }
+        }
+
+        var fridge = new Fridge(500);
+        fridge.enable();
+        fridge.addFood("кус-кус");
+        fridge.disable(); // ошибка, в холодильнике есть еда
+    </script>
+</body>
+
+</html>

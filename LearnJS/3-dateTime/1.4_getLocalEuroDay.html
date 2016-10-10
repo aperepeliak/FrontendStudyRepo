@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>get local euro day</title>
+</head>
+
+<body>
+    <script>
+        var date = new Date(2012, 0, 3);
+
+        function getLocalDay(date) {
+            var res = date.getDay() === 0 ? 7 : date.getDay();
+            return res;
+        }
+
+        console.log(getLocalDay(date));
+    </script>
+</body>
+
+</html>

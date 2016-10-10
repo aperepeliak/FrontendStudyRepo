@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function f(x) {
+            alert(x);
+        }
+
+        // В первом случае не сохранил аргс в переменную и они терялись
+        function delay(f, ms) {
+            return function() {
+                var timerId = setTimeout(func, ms);
+                var self = this;
+
+                function func() {
+                    f.apply(self, arguments);
+                    clearTimeout(timerId);
+                }
+            }
+        }
+
+        function delay2(f, ms) {
+
+            return function() {
+                var args = arguments;
+                var self = this;
+
+                var timerId = setTimeout(func, ms);
+
+                function func() {
+                    f.apply(self, args);
+                    clearTimeout(timerId);
+                }
+            }
+        }
+
+        var f1000 = delay2(f, 1000);
+        var f1500 = delay2(f, 1500);
+
+        f1000("тест"); // выведет "тест" через 1000 миллисекунд
+        f1500("тест2"); // выведет "тест2" через 1500 миллисекунд
+    </script>
+</body>
+
+</html>

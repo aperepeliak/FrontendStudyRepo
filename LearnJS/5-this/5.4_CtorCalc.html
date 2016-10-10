@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Calculator() {
+            var a = 0;
+            var b = 0;
+
+            this.read = function() {
+                a = +prompt('Enter a -> ', 0);
+                b = +prompt('Enter b -> ', 0);
+            }
+
+            this.sum = function() {
+                return a + b;
+            }
+
+            this.mul = function() {
+                return a * b;
+            }
+        }
+
+        var calc = new Calculator();
+
+        calc.read();
+
+        console.log('summ : ', calc.sum());
+        console.log('multiplication : ', calc.mul());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <style>
+        * {
+            font-family: Georgia;
+        }
+        
+        .wrapper {
+            height: 200px;
+        }
+        
+        .show {
+            display: none;
+        }
+        
+        ul {
+            display: none;
+        }
+        
+        h3 {
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 25px;
+            width: 275px;
+            cursor: pointer;
+            transition: all 400ms ease-out;
+            border: 2px solid transparent;
+            border-radius: 10px;
+        }
+        
+        h3:hover {
+            border-color: pink;
+            color: pink;
+        }
+    </style>
+
+    <div class="wrapper">
+        <h3><span class="hide">▶</span><span class="show">▼</span>Сладости (нажми меня)!</h3>
+        <ul>
+            <li>Торт</li>
+            <li>Пончик</li>
+            <li>Пирожное</li>
+        </ul>
+    </div>
+
+    <script>
+        var header = document.querySelector('h3');
+        var ul = document.querySelector('ul');
+        var arrowHide = header.querySelector('.hide');
+        var arrowShow = header.querySelector('.show');
+
+        ul.style.display = getComputedStyle(ul).display;
+        arrowHide.style.display = getComputedStyle(arrowHide).display;
+        arrowShow.style.display = getComputedStyle(arrowShow).display;
+
+        console.log('arrowHide : ', arrowHide.style.display);
+        console.log('arrowShow : ', arrowShow.style.display);
+
+        header.addEventListener('click', handler);
+
+        function handler() {
+            if (ul.style.cssText == "display: block;") {
+                ul.style.cssText = "display: none;";
+                arrowHide.style.display = null;
+                arrowShow.style.cssText = "display: none;";
+            } else {
+                ul.style.cssText = "display: block;";
+                arrowHide.style.display = 'none';
+                arrowShow.style.cssText = "display: inline;";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

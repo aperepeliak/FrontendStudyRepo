@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Sort Objects</title>
+</head>
+
+<body>
+
+    <script>
+        var vasya = {
+            name: "Вася",
+            age: 26
+        };
+        var masha = {
+            name: "Маша",
+            age: 18
+        };
+        var vovochka = {
+            name: "Вовочка",
+            age: 6
+        };
+
+        var people = [vasya, masha, vovochka];
+        console.log(people);
+        
+
+        people.sort(fn);
+
+        function fn(a, b) {
+            return a.age - b.age;
+        }
+
+        console.log(people);
+
+    </script>
+
+</body>
+
+</html>

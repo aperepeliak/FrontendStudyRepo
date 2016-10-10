@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random Sort</title>
+</head>
+
+<body>
+
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+
+        arr.sort(fn);
+
+        // my version
+        function fn() {
+            return Math.random() < Math.random();
+        }
+
+        // learnJS version
+        function compareRandom(a, b) {
+            return Math.random() - 0.5;
+        }
+
+        console.log('randomly sorted: ', arr);
+    </script>
+
+</body>
+
+</html>

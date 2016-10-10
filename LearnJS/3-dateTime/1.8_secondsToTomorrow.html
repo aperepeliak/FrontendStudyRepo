@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seconds to tomorrow</title>
+</head>
+
+<body>
+    <script>
+        function getSecondsToTomorrow() {
+            var now = new Date();
+            var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            var diff = tomorrow - now;
+            return Math.floor(diff / 1000);
+        }
+
+        console.log(getSecondsToTomorrow());
+    </script>
+</body>
+
+</html>

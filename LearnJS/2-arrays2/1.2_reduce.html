@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reduce</title>
+</head>
+
+<body>
+
+    <script>
+        function getSum(arr) {
+            var res = [];
+            if (arr.length == null)
+                return res;
+
+            var totalSum = arr.reduce(function(sum, item) {
+                res.push(sum);
+                return sum + item;
+            });
+
+            res.push(totalSum);
+
+            return res;
+        }
+
+        console.log(getSum([1, 2, 3, 4, 5]));
+        
+    </script>
+
+</body>
+
+</html>

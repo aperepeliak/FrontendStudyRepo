@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var date = new Date(2012, 0, 3);
+        var date2 = new Date(2016, 8, 19);
+        function getWeekDay(date) {
+            return date.toLocaleString('ru', {weekday: 'short'});
+        }
+
+        console.log(getWeekDay(date));
+        console.log(getWeekDay(date2));
+
+    </script>
+</body>
+</html>

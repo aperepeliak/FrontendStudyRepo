@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        
+        // My version
+        function camelize(str) {
+            if (str) {
+
+                var chars = str.split('');
+                var newChars = [];
+
+                for (var i = 0; i < chars.length; i++) {
+                    if (chars[i] === '-') {
+                        newChars.push(chars[i + 1].toUpperCase());
+                        i++;
+                    } else {
+                        newChars.push(chars[i]);
+                    }
+                }
+
+                var newStr = newChars.join('');
+
+                return newStr;
+
+            }
+            return str;
+        }
+
+        // better version from learnJS
+        // function camelize(str) {
+        //     var arr = str.split('-');
+
+        //     for (var i = 1; i < arr.length; i++) {
+        //         // преобразовать: первый символ с большой буквы
+        //         arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        //     }
+
+        //     return arr.join('');
+        // }
+
+
+        console.log(camelize("background-color"));
+        console.log(camelize("list-style-image"));
+        console.log(camelize("-webkit-transition"));
+    </script>
+
+</body>
+
+</html>

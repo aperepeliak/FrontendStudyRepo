@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sum(a) {
+            var res = a;
+
+            function f(b) {
+                res += b;
+                return f;
+            }
+
+            f.toString = function() {
+                return res;
+            }
+
+            return f;
+        }
+
+        // learnJS version
+        function sum1(a) {
+
+            var currentSum = a;
+
+            function f(b) {
+                currentSum += b;
+                return f;
+            }
+
+            f.toString = function() {
+                return currentSum;
+            };
+
+            return f;
+        }
+
+        console.log(sum1(1)(5)(4)(21));
+    </script>
+</body>
+
+</html>

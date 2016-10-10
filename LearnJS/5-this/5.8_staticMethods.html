@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Article() {
+            this.created = new Date();
+
+            Article.counter++;
+            Article.lastCreated = this.created;
+
+            Article.showStats = function() {
+                console.log('Total articles created: ', Article.counter);
+                console.log('Last created article : ', Article.lastCreated);
+            }
+        }
+
+        Article.counter = 0;
+
+        new Article();
+        Article.showStats();
+
+        alert('wait for couple of seconds!');
+
+        new Article();
+        Article.showStats();
+
+        alert('Please wait AGAIN!');
+
+        new Article();
+        Article.showStats();
+
+
+        //learnJS version
+
+        // function Article() {
+        //     this.created = new Date;
+
+        //     Article.count++; // увеличиваем счетчик при каждом вызове
+        //     Article.last = this.created; // и запоминаем дату
+        // }
+        // Article.count = 0; // начальное значение
+        // // (нельзя оставить undefined, т.к. Article.count++ будет NaN)
+
+        // Article.showStats = function() {
+        //     alert('Всего: ' + this.count + ', Последняя: ' + this.last);
+        // };
+
+        // new Article();
+        // new Article();
+
+        // Article.showStats(); // Всего: 2, Последняя: (дата)
+
+        // new Article();
+
+        // Article.showStats(); // Всего: 3, Последняя: (дата)
+    </script>
+</body>
+
+</html>
