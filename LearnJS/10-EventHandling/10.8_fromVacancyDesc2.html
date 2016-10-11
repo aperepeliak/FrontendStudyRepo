@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        /* стиль не трогать !! */
+        
+        .text {
+            color: $maincolor;
+        }
+    </style>
+
+    <!-- Код не трогать! -->
+    <div class="text">pink</div>
+
+    <script>
+        /* 
+        ЗАДАНИЕ:
+        написать срипт, который сделает CSS валиным и закрасит текст в блоке div цветом указанным в содержании этого блока.
+        Работать только в этом блоке и только управление блока CSS.
+        Напрямую указывать стиль текста нельзя.
+        Валидный CSS сам его поставит как нужно.
+        */
+
+        var div = document.querySelector('.text');
+
+        div.style.color = div.innerHTML;
+    </script>
+
+</body>
+
+</html>

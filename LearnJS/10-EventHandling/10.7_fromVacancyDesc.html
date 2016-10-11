@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- тут ничего не трогать -->
+    <button id="but">Кнопка 1</button>
+
+    <script>
+        // функция № 1 - создает кнопку № 2 при нажатии на кнопку 1
+        // функция № 2 - вызывает алерт при нажатии на кнопку № 2
+        // запрещено генерировать код алерта функцией № 1
+
+        var btn1 = document.querySelector('#but');
+        btn1.addEventListener('click', addBtn);
+
+        function addBtn() {
+            var newBtn = document.createElement('button');
+            newBtn.id = 'but2';
+            newBtn.innerHTML = 'Кнопка 2';
+            document.body.appendChild(newBtn);
+        }
+
+        document.body.addEventListener('click', invoke);
+
+        function invoke(event) {
+            var target = event.target;
+            if (target.id == 'but2') {
+                alert('test');
+            } else {
+                return;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
