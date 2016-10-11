@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #field {
+            width: 200px;
+            height: 150px;
+            border: 10px groove black;
+            background-color: #00FF00;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #ball {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            transition: all 600ms ease-in-out;
+        }
+        
+        #field:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style="height:2000px">
+
+    Кликните на любое место поля, чтобы мяч перелетел туда.
+    <br> Мяч никогда не вылетит за границы поля.
+
+
+    <div id="field">
+        <img src="https://js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+
+    <script>
+        var ball = document.getElementById('ball');
+        var field = document.getElementById('field');
+
+        field.addEventListener('click', moveBall);
+
+        function moveBall(event) {
+            var x = event.clientX;
+            var y = event.clientY;
+
+            // говнокод
+            // if (x >= (field.offsetLeft + field.clientLeft) && x <= (field.offsetLeft + field.clientLeft + field.clientWidth)) {
+            //     // если щелчок в поле
+            //     if (x >= (field.offsetLeft + field.clientLeft) && x <= (field.offsetLeft + field.clientLeft + ball.offsetWidth / 2)) {
+            //         // если щелчок слева меньше ширины мяча
+            //         ball.style.left = Math.round(field.offsetLeft + field.clientLeft) + 'px';
+            //     } else if (x >= (field.offsetLeft + field.clientLeft + field.clientWidth - ball.offsetWidth / 2)) {
+            //         // если щелчок справа больше ширины мяча
+            //         ball.style.left = Math.round(field.offsetLeft + field.clientLeft + field.clientWidth - ball.offsetWidth) + 'px';
+            //     } else {
+            //         // просто в поле
+            //         ball.style.left = Math.round((x - ball.offsetWidth / 2)) + 'px';
+            //     }
+            // } else {
+            //     // Если щелчок на границе
+            //     if (x < (field.offsetLeft + field.clientLeft)) {
+            //         // Щелчок на левой границе
+            //         ball.style.left = Math.round(field.offsetLeft + field.clientLeft) + 'px';
+            //     } else {
+            //        ball.style.left = Math.round(field.offsetLeft + field.clientLeft + field.clientWidth - ball.offsetWidth) + 'px'; 
+            //     }
+            // }
+
+
+
+            var fieldCoords = this.getBoundingClientRect();
+
+            var fieldX = fieldCoords.left + field.clientLeft;
+            var fieldY = fieldCoords.top + field.clientTop;
+
+            var ballX = x - fieldX - ball.clientWidth / 2;
+            var ballY = y - fieldY - ball.clientHeight / 2;
+
+            if (ballX < 0)
+                ballX = 0;
+
+            if (ballY < 0)
+                ballY = 0;
+
+            if ((ballX + ball.clientWidth) > field.clientWidth)
+                ballX = field.clientWidth - ball.clientWidth;
+
+            if ((ballY + ball.clientHeight) > field.clientHeight) 
+                ballY = field.clientHeight - ball.clientHeight;
+
+
+            ball.style.left = ballX + 'px';
+            ball.style.top = ballY + 'px';
+
+
+
+
+
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
