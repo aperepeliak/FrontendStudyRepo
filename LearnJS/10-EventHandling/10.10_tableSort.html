@@ -56,14 +56,10 @@
         function sortByColumn(event) {
             var target = event.target;
 
-            if (target.tagName = 'TH') {
+            if (target.tagName == 'TH') {
                 //console.log(target.innerHTML);
                 var selectedColumn = findSelectedColumn(table, target);
-                console.log(selectedColumn);
-
-
-
-
+				sortTable(selectedColumn, target.dataset.type);
                 //console.log(target.dataset.type);
             }
         }
@@ -76,6 +72,37 @@
                     return i; 
             }
         }
+
+		function sortTable(colNum, type) {
+			var tbody = table.getElementsByTagName('tbody')[0];
+
+			var rowsArray = [].slice.call(tbody.rows);
+
+			var compare;
+
+			switch(type) {
+				case 'number':
+					compare = function(rowA, rowB) {
+						return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
+					};
+				break;
+
+				case 'string':
+					compare = function(rowA, rowB) {
+						return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+					};
+				break;
+			}
+			rowsArray.sort(compare);
+
+			table.removeChild(tbody);
+
+			for (var i = 0; i < rowsArray.length; i++) {
+				tbody.appendChild(rowsArray[i]);
+			}
+
+			table.appendChild(tbody);
+		}
 
   </script>
 
