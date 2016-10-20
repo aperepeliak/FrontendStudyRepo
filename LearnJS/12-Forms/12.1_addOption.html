@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<select>
+        <option value="Rock">Рок</option>
+        <option value="Blues" selected>Блюз</option>
+    </select>
+
+	<script>
+        var select = document.querySelector('select');
+
+        for (var i = 0; i < select.options.length; i++) {
+            var option = select.options[i];
+
+            if (option.selected) {
+                console.log('value: ', option.value);
+                console.log('text: ', option.text);
+            }
+        }
+
+        // an alternative from JSru
+        // var selectedOption = select.options[select.selectedIndex];
+
+        var newOpt = document.createElement('option');
+
+        newOpt.value = 'Classic';
+        newOpt.text = 'Классика';
+        newOpt.selected = true;
+
+        select.appendChild(newOpt);
+
+        for (var i = 0; i < select.options.length; i++) {
+            var option = select.options[i];
+
+            if (option.selected) {
+                console.log('value: ', option.value);
+                console.log('text: ', option.text);
+            }
+        }
+    </script>
+</body>
+
+</html>
