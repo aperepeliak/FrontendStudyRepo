@@ -6,7 +6,7 @@ const myItems = {
 
 const FilteredList = React.createClass({
 
-    filterList: function(event) {
+    filterList(event) {
         let updatedList = this.props.initialItems.items;
 
         updatedList = updatedList.filter(function(item){
@@ -19,17 +19,17 @@ const FilteredList = React.createClass({
         this.setState({items: updatedList});
     },
     
-    getInitialState: function() {
+    getInitialState() {
         return {
             items: []
         };
     },
 
-    componentWillMount: function() {
+    componentWillMount() {
         this.setState({items: this.props.initialItems.items})
     },
 
-    render: function() {
+    render() {
         return (
             <div className="myList">
                 <input type="text" placeholder="Search" onChange={this.filterList} />
@@ -40,7 +40,7 @@ const FilteredList = React.createClass({
 });
 
 const List = React.createClass({
-    render: function() {
+    render() {
         return (
             <ul>
                 {
