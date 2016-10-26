@@ -1,9 +1,45 @@
-var Greeter = React.createClass({
+/* jshint esversion: 6 */
+
+let GreeterMessage = React.createClass({
+    render() {
+        let name = this.props.name;
+        let message = this.props.message;
+        return (
+            <div>
+                <h1>Hello {name}</h1>
+                <p>{message}</p>
+            </div>
+        );
+    }
+});
+
+let GreeterForm = React.createClass({
+
+    onFormSubmit(e) {
+        e.preventDefault();
+        let name = this.refs.name.value;
+        if (name.length > 0) {
+            this.refs.name.value = '';
+            this.props.onNewName(name);
+        }
+    },
+
+    render() {
+        return (
+            <form onSubmit={this.onFormSubmit}>
+                <input type="text" ref="name" placeholder="Type your name" />
+                <button>Set Name</button>
+            </form>
+        );
+    }
+});
+
+let Greeter = React.createClass({
 
     getDefaultProps() {
         return {
             name: 'React',
-            message: 'This is the paragraph from the component'
+            message: 'default message'
         }
     },
 
@@ -13,36 +49,19 @@ var Greeter = React.createClass({
         };
     },
 
-    onButtonClick(event) {
-        // preventing the form from submiting and a page to refresh
-        event.preventDefault();
-
-        let nameRef = this.refs.name;
-        let name = nameRef.value;
-
-        nameRef.value = '';
-
-        if (typeof name === 'string' && name.length > 0) {
-            this.setState({
-                name: name
-            });
-        }
+    handleNewName(name) {
+        this.setState({
+            name: name
+        });
     },
 
     render() {
-
         let name = this.state.name;
         let message = this.props.message;
-
         return (
             <div>
-                <h1>Hello {name}!</h1>
-                <p>{message + '!!'}</p>
-
-                <form onSubmit={this.onButtonClick}>
-                    <input placeholder="Type your name" type="text" ref="name" />
-                    <button>Set Name</button>
-                </form>
+                <GreeterMessage name={name} message={message}/>
+                <GreeterForm onNewName={this.handleNewName}/>     
             </div>
         );
     }
