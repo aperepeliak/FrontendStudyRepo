@@ -22,17 +22,17 @@ let GreeterForm = React.createClass({
 
         let name = this.refs.name.value;
         let message = this.refs.message.value;
-        
+
         if (name.length > 0) {
             updates.name = name;
             this.refs.name.value = '';
-            this.props.onNewSubmit(updates);
         }
         if (message.length > 0) {
             updates.message = message;
             this.refs.message.value = '';
-            this.props.onNewSubmit(updates);
         }
+
+        this.props.onNewSubmit(updates);
     },
 
     render() {
