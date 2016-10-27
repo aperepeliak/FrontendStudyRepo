@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
 let React = require('react');
 
-let GreeterMessage = require('./GreeterMessage');
-let GreeterForm = require('./GreeterForm');
+let GreeterMessage = require('GreeterMessage');
+let GreeterForm = require('GreeterForm');
 
 let Greeter = React.createClass({
 

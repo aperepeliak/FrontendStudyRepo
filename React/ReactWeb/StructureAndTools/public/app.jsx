@@ -2,9 +2,9 @@
 
 let React = require('react');
 let ReactDOM = require('react-dom');
-let Greeter = require('./components/Greeter');
+let Greeter = require('Greeter');
 
-let firstName = 'Andrew';
+let firstName = 'Sveta';
 let messageToPass = 'This is my message';
 
 ReactDOM.render(
