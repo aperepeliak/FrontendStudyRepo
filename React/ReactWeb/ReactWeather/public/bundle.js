@@ -24851,20 +24851,49 @@
 
 	'use strict';
 
+	/* jshint esversion: 6 */
 	var React = __webpack_require__(1);
+	var Nav = __webpack_require__(217);
 
 	var Main = React.createClass({
 	    displayName: 'Main',
 	    render: function render() {
 	        return React.createElement(
-	            'h2',
+	            'div',
 	            null,
-	            'Main component'
+	            React.createElement(Nav, null),
+	            React.createElement(
+	                'h2',
+	                null,
+	                'Main component'
+	            )
 	        );
 	    }
 	});
 
 	module.exports = Main;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* jshint esversion: 6 */
+	var React = __webpack_require__(1);
+
+	var Nav = React.createClass({
+	    displayName: 'Nav',
+	    render: function render() {
+	        return React.createElement(
+	            'h2',
+	            null,
+	            'Nav component'
+	        );
+	    }
+	});
+
+	module.exports = Nav;
 
 /***/ }
 /******/ ]);

@@ -1,9 +1,14 @@
+/* jshint esversion: 6 */
 let React = require('react');
+let Nav = require('Nav');
 
 let Main = React.createClass({
     render() {
         return(
-            <h2>Main component</h2>
+            <div>
+                <Nav />
+                <h2>Main component</h2>
+            </div>
         );
     }
 });
