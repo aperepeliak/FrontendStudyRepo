@@ -2,6 +2,7 @@
 let React = require('react');
 let WeatherForm = require('WeatherForm');
 let WeatherMessage = require('WeatherMessage');
+let openWeatherMap = require('openWeatherMap');
 
 let Weather = React.createClass({
 
@@ -13,21 +14,26 @@ let Weather = React.createClass({
     },
 
     handleSearch(location) {
-        this.setState({
-            location: location,
-            temp: 23
+        let that = this;
+        openWeatherMap.getTemp(location).then(function (temp) {
+            that.setState({
+                location: location,
+                temp: temp
+            });
+        }, function (errorMessage) {
+            alert(errorMessage);
         });
     },
 
     render() {
-        // We also could destructuring here
+        // We also could have used destructuring here
         // var {location, temp} = this.state;
 
         return (
             <div>
                 <h3>Weather component</h3>
-                <WeatherForm onSearch={this.handleSearch}/>
-                <WeatherMessage location={this.state.location} temp={this.state.temp}/>
+                <WeatherForm onSearch={this.handleSearch} />
+                <WeatherMessage location={this.state.location} temp={this.state.temp} />
             </div>
         );
     }
