@@ -8,13 +8,17 @@ let Weather = React.createClass({
 
     getInitialState() {
         return {
-            location: 'Kyiv',
-            temp: 17
+            isLoading: false
         }
     },
 
     handleSearch(location) {
         let that = this;
+
+        this.setState({
+            isLoading: true
+        });
+
         openWeatherMap.getTemp(location).then(function (temp) {
             that.setState({
                 location: location,
@@ -26,14 +30,19 @@ let Weather = React.createClass({
     },
 
     render() {
-        // We also could have used destructuring here
-        // var {location, temp} = this.state;
+        let {isLoading, location, temp} = this.state;
+
+        function renderMessage(){
+            if (isLoading) {
+                 
+            }
+        };
 
         return (
             <div>
                 <h3>Weather component</h3>
                 <WeatherForm onSearch={this.handleSearch} />
-                <WeatherMessage location={this.state.location} temp={this.state.temp} />
+                <WeatherMessage location={location} temp={temp} />
             </div>
         );
     }

@@ -24944,12 +24944,16 @@
 	    displayName: 'Weather',
 	    getInitialState: function getInitialState() {
 	        return {
-	            location: 'Kyiv',
-	            temp: 17
+	            isLoading: false
 	        };
 	    },
 	    handleSearch: function handleSearch(location) {
 	        var that = this;
+
+	        this.setState({
+	            isLoading: true
+	        });
+
 	        openWeatherMap.getTemp(location).then(function (temp) {
 	            that.setState({
 	                location: location,
@@ -24960,8 +24964,15 @@
 	        });
 	    },
 	    render: function render() {
-	        // We also could have used destructuring here
-	        // var {location, temp} = this.state;
+	        var _state = this.state,
+	            isLoading = _state.isLoading,
+	            location = _state.location,
+	            temp = _state.temp;
+
+
+	        function renderMessage() {
+	            if (isLoading) {}
+	        };
 
 	        return React.createElement(
 	            'div',
@@ -24972,7 +24983,7 @@
 	                'Weather component'
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	            React.createElement(WeatherMessage, { location: this.state.location, temp: this.state.temp })
+	            React.createElement(WeatherMessage, { location: location, temp: temp })
 	        );
 	    }
 	});
