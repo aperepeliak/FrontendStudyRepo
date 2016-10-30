@@ -24957,9 +24957,13 @@
 	        openWeatherMap.getTemp(location).then(function (temp) {
 	            that.setState({
 	                location: location,
-	                temp: temp
+	                temp: temp,
+	                isLoading: false
 	            });
 	        }, function (errorMessage) {
+	            that.setState({
+	                isLoading: false
+	            });
 	            alert(errorMessage);
 	        });
 	    },
@@ -24971,7 +24975,15 @@
 
 
 	        function renderMessage() {
-	            if (isLoading) {}
+	            if (isLoading) {
+	                return React.createElement(
+	                    'h3',
+	                    null,
+	                    'Fetching weather...'
+	                );
+	            } else if (temp && location) {
+	                return React.createElement(WeatherMessage, { location: location, temp: temp });
+	            }
 	        };
 
 	        return React.createElement(
@@ -24983,7 +24995,7 @@
 	                'Weather component'
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	            React.createElement(WeatherMessage, { location: location, temp: temp })
+	            renderMessage()
 	        );
 	    }
 	});
