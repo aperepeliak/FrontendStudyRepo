@@ -17,6 +17,9 @@ let About = (props) => {
                 <li>
                     <a href="https://webpack.github.io/">Webpack</a> - organizing the workflow
                 </li>
+                <li>
+                    <a href="https://github.com/mjackson/expect">Expect</a> - Michael Jackson's assertion library
+                </li>
             </ul>
         </div>
     );
