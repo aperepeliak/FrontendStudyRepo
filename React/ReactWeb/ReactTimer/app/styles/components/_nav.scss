@@ -2,13 +2,18 @@
     background-color: $nav-background;
     ul {
         background-color: $nav-background;
+        a {
+            font-family: $main-font;
+        }
+
+        .active-link {
+            font-weight: bold;
+        }
     }
     .menu-text {
         font-family: $main-font;
         color: $nav-text-color;
-        
         a {
-            font-family: $main-font;
             display: inline;
             padding: 0;
         }
