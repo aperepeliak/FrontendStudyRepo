@@ -1,14 +1,14 @@
 .top-bar {
     background-color: $nav-background;
-
     ul {
         background-color: $nav-background;
     }
-
     .menu-text {
+        font-family: $main-font;
         color: $nav-text-color;
-
+        
         a {
+            font-family: $main-font;
             display: inline;
             padding: 0;
         }
