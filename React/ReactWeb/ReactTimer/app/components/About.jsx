@@ -18,6 +18,12 @@ let About = (props) => {
                     <a href="https://webpack.github.io/">Webpack</a> - organizing the workflow
                 </li>
                 <li>
+                    <a href="https://mochajs.org/">Mocha</a> - a JS test framework
+                </li>
+                <li>
+                    <a href="https://karma-runner.github.io/1.0/index.html">Karma</a> - test runner
+                </li>
+                <li>
                     <a href="https://github.com/mjackson/expect">Expect</a> - Michael Jackson's assertion library
                 </li>
             </ul>
