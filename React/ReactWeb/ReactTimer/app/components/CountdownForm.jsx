@@ -12,6 +12,8 @@ let CountdownForm = React.createClass({
             this.props.onSetCountdown(parseInt(strSeconds, 10));
         }
 
+        this.refs.seconds.value = '';
+
     },
     
     render() {
