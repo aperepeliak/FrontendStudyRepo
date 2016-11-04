@@ -14,7 +14,7 @@ let Countdown = React.createClass({
         }
     },
 
-    // componentDidUpdate is called every time the state or props gets updated
+    // componentDidUpdate is called every time the state or props get updated
     componentDidUpdate(prevProps, prevState) {
         if (this.state.countdownStatus !== prevState.countdownStatus) {
             switch (this.state.countdownStatus) {
@@ -35,12 +35,41 @@ let Countdown = React.createClass({
         }
     },
 
+    // componentWillUpdate is called just before component get will be updated
+    //componentWillUpdate(nextProps, nextState) {    },
+
+    // Fired when the component first gets mounted
+    // means method is invoked just before component shown th the screen
+    // don't have access to the refs or DOM  
+    // componentWillMount() {
+    //     console.log('componentWillMount');
+    // },
+
+    // Fired right after component is rendered in the DOM
+    // has access to refs  
+    // componentDidMount() {
+    //     console.log('componentDidMount');
+    // },
+
+    // this method automatically invoked by react right before component gets removed from the DOM
+    // means visually removed from the browser
+    componentWillUnmount() {
+        clearInterval(this.timer);
+        this.timer = undefined;
+    },
+
     startTimer() {
         this.timer = setInterval(() => {
             let newCount = this.state.count - 1;
             this.setState({
                 count: newCount >= 0 ? newCount : 0
             });
+
+            if (newCount === 0) {
+               this.setState({
+                   countdownStatus: 'stopped'
+               });
+            }
         }, 1000);
     },
 

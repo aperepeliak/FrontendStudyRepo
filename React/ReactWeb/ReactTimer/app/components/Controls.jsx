@@ -16,6 +16,10 @@ let Controls = React.createClass({
         } 
     },
 
+    // componentWillReceiveProps(newProps) {
+    //     console.log('componentWillReceiveProps', newProps.countdownStatus);
+    // },
+
     render() {
         let {countdownStatus} = this.props;
 
