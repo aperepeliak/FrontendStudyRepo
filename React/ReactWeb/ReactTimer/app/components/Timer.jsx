@@ -23,7 +23,6 @@ let Timer = React.createClass({
                     // reset time to zero
                     this.setState({
                         count: 0,
-                        timerStatus: 'paused'
                     });
                 // We are not using 'break;' intentionally 
                 case 'paused':
