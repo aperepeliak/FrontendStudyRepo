@@ -3,7 +3,6 @@ let expect = require('expect');
 let React = require('react');
 let ReactDOM = require('react-dom');
 let TestUtils = require('react-addons-test-utils');
-let $ = require('jQuery');
 
 let Countdown = require('Countdown');
 
@@ -63,6 +62,4 @@ describe('Countdown', () => {
             }, 1001);
         });
     });
-
-
 });
