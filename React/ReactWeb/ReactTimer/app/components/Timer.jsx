@@ -9,13 +9,13 @@ let Timer = React.createClass({
     getInitialState() {
         return {
             count: 0,
-            countdownStatus: 'paused'
+            timerStatus: 'paused'
         }
     },
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.countdownStatus !== prevState.countdownStatus) {
-            switch (this.state.countdownStatus) {
+        if (this.state.timerStatus !== prevState.timerStatus) {
+            switch (this.state.timerStatus) {
                 case 'started':
                     this.startTimer();
                     break;
@@ -23,7 +23,7 @@ let Timer = React.createClass({
                     // reset time to zero
                     this.setState({
                         count: 0,
-                        countdownStatus: 'paused'
+                        timerStatus: 'paused'
                     });
                 // We are not using 'break;' intentionally 
                 case 'paused':
@@ -51,17 +51,17 @@ let Timer = React.createClass({
 
     handleStatusChange(newStatus) {
         this.setState({
-            countdownStatus: newStatus
+            timerStatus: newStatus
         });
     },
 
     render() {
-        let {count, countdownStatus} = this.state;
+        let {count, timerStatus} = this.state;
         return (
             <div>
                 <h1 className="page-title">Timer</h1>
                 <Clock totalSeconds={count} />
-                <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />
+                <Controls countdownStatus={timerStatus} onStatusChange={this.handleStatusChange} />
             </div>
         );
     }
