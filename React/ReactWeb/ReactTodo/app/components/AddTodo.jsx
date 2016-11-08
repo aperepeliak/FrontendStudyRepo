@@ -3,23 +3,26 @@ let React = require('react');
 
 let AddTodo = React.createClass({
 
-    onSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
 
-        let newTodo = this.refs.todo.value;
+        let todoText = this.refs.todoText.value;
 
-        if (newTodo.length > 0) {
-            this.refs.todo.value = '';
-            this.props.onAddTodo(newTodo);
+        if (todoText.length > 0) {
+            this.refs.todoText.value = '';
+            this.props.onAddTodo(todoText);
+        } else {
+            // Put focus on an input control automatically
+            this.refs.todoText.focus();
         }
     },
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" ref="todo" placeholder="What do you need to do?" />
-                    <button>Add Todo</button>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" ref="todoText" placeholder="What do you need to do?" />
+                    <button className="button expanded">Add Todo</button>
                 </form>
             </div>
         );
