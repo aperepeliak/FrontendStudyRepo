@@ -31,8 +31,26 @@ module.exports = {
         });
 
         // filter by searchText
+        filteredTodos = filteredTodos.filter((todo) => {
+            if (searchText.length === 0) return true;
+
+            return todo.text.toLowerCase().indexOf(searchText) !== -1 ? true: false;
+        });
 
         // Sort todos with none-completed first
+        // If return -1 than it means that a must go before b
+        // If 1 --> b before a
+        // If 0 --> no change (a == b)
+        filteredTodos.sort((a, b) => {
+            // if a status is not true and b status is true
+            if (!a.completed && b.completed) {
+                return -1;
+            } else if (a.completed && !b.completed) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
 
 
         return filteredTodos;
