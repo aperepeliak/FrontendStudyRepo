@@ -3,6 +3,7 @@ let React = require('react');
 let ReactDOM = require('react-dom');
 let TestUtils = require('react-addons-test-utils');
 let expect = require('expect');
+let $ = require('jQuery');
 
 let TodoList = require('TodoList');
 let Todo = require('Todo');
@@ -24,7 +25,7 @@ describe('TodoList', () => {
             }
         ];
 
-        let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+        let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
 
         // this method lets check how many of a given component are rendered under a separate component. 
         // Returns an array of components.
@@ -32,5 +33,13 @@ describe('TodoList', () => {
         let todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
 
         expect(todosComponents.length).toBe(todos.length);
+    });
+
+    it('should render empty message if no todos', () => {
+        let todos = [];
+        let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
+        let $el = $(ReactDOM.findDOMNode(todoList));
+
+        expect($el.find('.container__message').length).toBe(1);
     });
 });
