@@ -6,13 +6,35 @@ console.log('Starting redux example');
 // createStore takes one arg which has to be a  pure function
 // a reducer is a pure function in redux speak
 // reducer takes existing state and action as the arguments and then computes the new state
-let reducer = (state = {name: 'Anonumous'}, action) => {
+let reducer = (state = { name: 'Anonumous' }, action) => {
     // state = state || {name: 'Anonumous'}; // ES5 syntax (old)
-    
-    return state;
+
+    switch (action.type) {
+        case 'CHANGE_NAME':
+            return {
+                ...state,
+                name: action.name
+            };
+        default:
+            return state;       
+    }
 };
 
 let store = redux.createStore(reducer);
 
 let currState = store.getState();
 console.log('currState', currState);
+
+// action is an object
+// it must have 'type' property. Type is an action's name
+// let action = {
+//     type: 'CHANGE_NAME', // Such naming is a rule
+//     name: 'Andrew'
+// };
+
+store.dispatch( {
+    type: 'CHANGE_NAME',
+    name: 'Andrew'
+});
+
+console.log('new state: ', store.getState());
