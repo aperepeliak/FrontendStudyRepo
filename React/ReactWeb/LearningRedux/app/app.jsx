@@ -15,3 +15,4 @@ ReactDOM.render(
 );
 
 require('./redux-example.jsx');
+require('./pure-funcs.jsx');
