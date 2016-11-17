@@ -22,7 +22,15 @@ let reducer = (state = stateDefault, action) => {
     }
 };
 
-let store = redux.createStore(reducer);
+let store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+let unsubscribe = store.subscribe(() => {
+    let state = store.getState();
+    console.log('searchText is: ', state.searchText);
+    document.getElementById('app').innerHTML = state.searchText;
+});
 
 console.log('currState', store.getState());
 
@@ -31,5 +39,8 @@ store.dispatch({
     searchText: 'test'
 });
 
-console.log('new state: ', store.getState());
+store.dispatch({
+    type: 'CHANGE_SEARCH_TEXT',
+    searchText: 'hello'
+})
 

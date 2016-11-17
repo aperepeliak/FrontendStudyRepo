@@ -20,7 +20,21 @@ let reducer = (state = { name: 'Anonumous' }, action) => {
     }
 };
 
-let store = redux.createStore(reducer);
+
+let store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+// subscribe to changes
+// we can call unsubscribe func whenever we want to unsubscribe this callback
+let unsubscribe = store.subscribe(() => {
+    let state = store.getState();
+    console.log('Name is', state.name);
+    document.getElementById('app').innerHTML = state.name;
+});
+
+// unsubscribe();
+
 
 let currState = store.getState();
 console.log('currState', currState);
@@ -32,9 +46,12 @@ console.log('currState', currState);
 //     name: 'Andrew'
 // };
 
-store.dispatch( {
+store.dispatch({
     type: 'CHANGE_NAME',
     name: 'Andrew'
 });
 
-console.log('new state: ', store.getState());
+store.dispatch({
+    type: 'CHANGE_NAME',
+    name: "Vasya"
+});
