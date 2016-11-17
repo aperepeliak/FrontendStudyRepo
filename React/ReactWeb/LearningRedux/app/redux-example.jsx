@@ -16,8 +16,10 @@ let nextMovieId = 1;
 // createStore takes one arg which has to be a  pure function
 // a reducer is a pure function in redux speak
 // reducer takes existing state and action as the arguments and then computes the new state
-let reducer = (state = stateDefault, action) => {
-    // state = state || {name: 'Anonumous'}; // ES5 syntax (old)
+
+/*
+let oldReducer = (state = stateDefault, action) => {
+    // state = state || {name: 'Anonymous'}; // ES5 syntax (old)
 
     switch (action.type) {
 
@@ -68,6 +70,62 @@ let reducer = (state = stateDefault, action) => {
             return state;       
     }
 };
+ */
+
+let nameReducer = (state = "Anonymous", action) => {
+    switch (action.type) {
+        case 'CHANGE_NAME':
+            return action.name;
+        default:
+            return state;
+    }
+};
+
+let hobbiesReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'ADD_HOBBY':
+            return [
+                ...state,
+                {
+                    id: nextHobbyId++,
+                    hobby: action.hobby
+                }
+            ];
+        
+        case 'REMOVE_HOBBY':
+            return state.filter( hobby => hobby.id !== action.id);
+        
+        default:
+            return state;
+    }
+};
+
+let moviesReducer = (state = [], action) => {
+    switch (action.type) {
+
+        case 'ADD_MOVIE':
+            return [
+                ...state,
+                {
+                    id: nextMovieId++,
+                    title: action.title,
+                    genre: action.genre
+                }
+            ];
+
+        case 'REMOVE_MOVIE':
+            return state.filter( movie => movie.id !== action.id);
+
+        default:
+            return state;
+    }
+};
+
+let reducer = redux.combineReducers({
+    name: nameReducer,
+    hobbies: hobbiesReducer,
+    movies: moviesReducer
+});
 
 
 let store = redux.createStore(reducer, redux.compose(
