@@ -3,18 +3,67 @@ let redux = require('redux');
 
 console.log('Starting redux example');
 
+let stateDefault = {
+    name: 'Anonymous',
+    hobbies: [],
+    movies: []
+};
+
+// Unique identifier for each hobby
+let nextHobbyId = 1;
+let nextMovieId = 1;
+
 // createStore takes one arg which has to be a  pure function
 // a reducer is a pure function in redux speak
 // reducer takes existing state and action as the arguments and then computes the new state
-let reducer = (state = { name: 'Anonumous' }, action) => {
+let reducer = (state = stateDefault, action) => {
     // state = state || {name: 'Anonumous'}; // ES5 syntax (old)
 
     switch (action.type) {
+
         case 'CHANGE_NAME':
             return {
                 ...state,
                 name: action.name
             };
+        
+        case 'ADD_HOBBY':
+            return {
+                ...state,
+                hobbies: [
+                    ...state.hobbies,
+                    {
+                        id: nextHobbyId++,
+                        hobby: action.hobby 
+                    }
+                ]
+            };
+
+        case 'REMOVE_HOBBY':
+            return {
+                ...state,
+                hobbies: state.hobbies.filter((hobby) => hobby.id !== action.id)
+            };
+
+        case 'ADD_MOVIE':
+            return {
+                ...state,
+                movies: [
+                    ...state.movies,
+                    {
+                        id: nextMovieId++,
+                        title: action.title,
+                        genre: action.genre
+                    }
+                ]
+            };
+
+        case 'REMOVE_MOVIE':
+            return {
+                ...state,
+                movies: state.movies.filter(movie => movie.id !== action.id)
+            };
+
         default:
             return state;       
     }
@@ -31,6 +80,8 @@ let unsubscribe = store.subscribe(() => {
     let state = store.getState();
     console.log('Name is', state.name);
     document.getElementById('app').innerHTML = state.name;
+
+    console.log('new state: ', store.getState());
 });
 
 // unsubscribe();
@@ -52,6 +103,38 @@ store.dispatch({
 });
 
 store.dispatch({
+    type: 'ADD_HOBBY',
+    hobby: 'Running'
+});
+
+store.dispatch({
+    type: 'ADD_HOBBY',
+    hobby: 'Walking'
+});
+
+store.dispatch({
+    type: 'REMOVE_HOBBY',
+    id: 2
+});
+
+store.dispatch({
     type: 'CHANGE_NAME',
     name: "Vasya"
+});
+
+store.dispatch({
+    type: 'ADD_MOVIE',
+    title: 'Inception',
+    genre: 'fiction'
+});
+
+store.dispatch({
+    type: 'ADD_MOVIE',
+    title: 'Shawshank Redemption',
+    genre: 'thriller'
+});
+
+store.dispatch({
+    type: 'REMOVE_MOVIE',
+    id: 1
 });
