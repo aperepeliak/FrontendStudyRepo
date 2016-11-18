@@ -3,15 +3,13 @@ let redux = require('redux');
 
 console.log('Starting redux example');
 
+/* stateDefault var was used for oldReducer 
 let stateDefault = {
     name: 'Anonymous',
     hobbies: [],
     movies: []
 };
-
-// Unique identifier for each hobby
-let nextHobbyId = 1;
-let nextMovieId = 1;
+*/
 
 // createStore takes one arg which has to be a  pure function
 // a reducer is a pure function in redux speak
@@ -81,6 +79,17 @@ let nameReducer = (state = "Anonymous", action) => {
     }
 };
 
+// Action generator for name
+let changeName = (name) => {
+    return {
+        type: 'CHANGE_NAME',
+        
+        // ES6 feature. its the same as: name: name 
+        name
+    };
+};
+
+let nextHobbyId = 1;
 let hobbiesReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_HOBBY':
@@ -100,6 +109,21 @@ let hobbiesReducer = (state = [], action) => {
     }
 };
 
+let addHobby = (hobby) => {
+    return {
+        type: 'ADD_HOBBY',
+        hobby
+    };
+};
+
+let removeHobby = (id) => {
+    return {
+        type: 'REMOVE_HOBBY',
+        id
+    };
+};
+
+let nextMovieId = 1;
 let moviesReducer = (state = [], action) => {
     switch (action.type) {
 
@@ -119,6 +143,21 @@ let moviesReducer = (state = [], action) => {
         default:
             return state;
     }
+};
+
+let addMovie = (title, genre) => {
+    return {
+        type: 'ADD_MOVIE',
+        title,
+        genre
+    };
+};
+
+let removeMovie = (id) => {
+    return {
+        type: 'REMOVE_MOVIE',
+        id
+    };
 };
 
 let reducer = redux.combineReducers({
@@ -155,44 +194,24 @@ console.log('currState', currState);
 //     name: 'Andrew'
 // };
 
-store.dispatch({
-    type: 'CHANGE_NAME',
-    name: 'Andrew'
-});
+// Dispatching with action generator
+/* Previously it was like this:
+    store.dispatch({
+        type: 'CHANGE_NAME',
+        name: 'Andrew'
+    }); */
+store.dispatch(changeName('Andrew'));
 
-store.dispatch({
-    type: 'ADD_HOBBY',
-    hobby: 'Running'
-});
+store.dispatch(addHobby('Running'));
 
-store.dispatch({
-    type: 'ADD_HOBBY',
-    hobby: 'Walking'
-});
+store.dispatch(addHobby('Walking'));
 
-store.dispatch({
-    type: 'REMOVE_HOBBY',
-    id: 2
-});
+store.dispatch(removeHobby(2));
 
-store.dispatch({
-    type: 'CHANGE_NAME',
-    name: "Vasya"
-});
+store.dispatch(changeName('Vasya'));
 
-store.dispatch({
-    type: 'ADD_MOVIE',
-    title: 'Inception',
-    genre: 'fiction'
-});
+store.dispatch(addMovie('Star Wars', 'action'));
 
-store.dispatch({
-    type: 'ADD_MOVIE',
-    title: 'Shawshank Redemption',
-    genre: 'thriller'
-});
+store.dispatch(addMovie('Hobbit', 'fantasy'));
 
-store.dispatch({
-    type: 'REMOVE_MOVIE',
-    id: 1
-});
+store.dispatch(removeMovie(1));
