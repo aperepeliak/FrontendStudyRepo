@@ -1,5 +1,7 @@
 /* jshint esversion:6 */
 let expect = require('expect');
+let df = require('deep-freeze-strict');
+
 let reducers = require('reducers');
 
 describe('Reducers', () => {
@@ -10,7 +12,7 @@ describe('Reducers', () => {
                 searchText: 'some text'
             };
 
-            let res = reducers.searchTextReducer('', action);
+            let res = reducers.searchTextReducer(df(''), df(action));
 
             expect(res).toEqual(action.searchText);
         });
@@ -22,7 +24,7 @@ describe('Reducers', () => {
                 type: 'TOGGLE_SHOW_COMPLETED'
             };
 
-            let res = reducers.showCompletedReducer(false, action);
+            let res = reducers.showCompletedReducer(df(false), df(action));
 
             expect(res).toBe(true);
         });
