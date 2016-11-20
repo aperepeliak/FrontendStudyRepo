@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 let redux = require('redux');
-let {searcTextReducer, showCompletedReducer, todosReducer} = require('reducers');
+let {searchTextReducer, showCompletedReducer, todosReducer} = require('reducers');
 
 export let configure = () => {
     let reducer = redux.combineReducers({
@@ -12,4 +12,6 @@ export let configure = () => {
     let store = redux.createStore(reducer, redux.compose(
         window.devToolsExtension ? window.devToolsExtension() : f => f 
     ));
+
+    return store;
 };
