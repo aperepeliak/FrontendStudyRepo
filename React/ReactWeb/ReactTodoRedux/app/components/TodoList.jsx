@@ -1,8 +1,9 @@
 /* jshint esversion: 6 */
 let React = require('react');
-let Todo = require('Todo');
+let {connect} = require('react-redux');
+import Todo from 'Todo';
 
-let TodoList = React.createClass({
+export let TodoList = React.createClass({
     render() {
         let {todos} = this.props;
 
@@ -14,7 +15,7 @@ let TodoList = React.createClass({
             }
             return todos.map((todo) => {
                 return (
-                    <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+                    <Todo key={todo.id} {...todo} />
                 );
             });
         };
@@ -27,4 +28,11 @@ let TodoList = React.createClass({
     }
 });
 
-module.exports = TodoList;
+// we wanna do a connection and we wanna connect it to TodoList
+export default connect(
+    (state) => {
+        return {
+            todos: state.todos
+        };
+    }
+)(TodoList);

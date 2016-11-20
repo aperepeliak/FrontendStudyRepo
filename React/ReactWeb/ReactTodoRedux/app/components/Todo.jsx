@@ -1,16 +1,19 @@
 /* jshint esversion: 6 */
 let React = require('react');
+let {connect} = require('react-redux');
 let moment = require('moment');
 
-let Todo = React.createClass({
+let actions = require('actions');
 
-    onToggle() {
-        let {id} = this.props;
-        this.props.onToggle(id);
-    },
+export let Todo = React.createClass({
+
+    // onToggle() {
+    //     let {id} = this.props;
+    //     this.props.onToggle(id);
+    // },
 
     render() {
-        let {id, text, completed, createdAt, completedAt} = this.props;
+        let {id, text, completed, createdAt, completedAt, dispatch} = this.props;
 
         let todoClassName = completed ? 'todo todo-completed' : 'todo';
 
@@ -27,7 +30,9 @@ let Todo = React.createClass({
         };
 
         return (
-            <div className={todoClassName} onClick={this.onToggle}>
+            <div className={todoClassName} onClick={ () => {
+                dispatch(actions.toggleTodo(id));
+            }}>
                 <div>
                     <input type="checkbox" checked={completed} />
                 </div>
@@ -40,8 +45,4 @@ let Todo = React.createClass({
     }
 });
 
-module.exports = Todo;
-
-// <div onClick={() => {
-//     this.props.onToggle(id);
-// }}>
+export default connect()(Todo);
