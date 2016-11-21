@@ -4,7 +4,7 @@ let {searchTextReducer, showCompletedReducer, todosReducer} = require('reducers'
 
 export let configure = (initialState = {}) => {
     let reducer = redux.combineReducers({
-        searcText: searchTextReducer,
+        searchText: searchTextReducer,
         showCompleted: showCompletedReducer,
         todos: todosReducer
     });
