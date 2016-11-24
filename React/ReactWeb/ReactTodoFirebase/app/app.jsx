@@ -10,6 +10,8 @@ let actions = require('actions');
 let store = require('configureStore').configure();
 let TodoAPI = require('TodoAPI');
 
+import './../playground/index';
+
 store.subscribe(() => {
   let state = store.getState();
   console.log('New state', state);
