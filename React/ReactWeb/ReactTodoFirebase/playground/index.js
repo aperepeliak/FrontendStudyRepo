@@ -26,16 +26,34 @@ firebaseRef.set({
         name: 'Andrii',
         age: 27
     }, 
-}).then(() => {
-    console.log('Set worked!');
-}, (err) => {
-    console.log('Set failed!');
 });
 
-firebaseRef.child('user').set({
-    name: 'Vasya'
-});
+// firebaseRef.child('app').set({
+//     name: 'Todo application'
+// });
 
-firebaseRef.child('app').set({
+// update() modifies existing data without erasing other data
+// multipath updates --> 'app/name': value || or to use child()
+
+// update() comes with a promise as its return value
+// firebaseRef.update({
+//     isRunning: false,
+//     'app/name' : 'Todo application'
+// });
+
+// firebaseRef.child('app').update({
+//     name: 'My Todo App'
+// });
+
+// firebaseRef.update({
+//     'app/name': 'Todo application',
+//     'user/name': 'Vasya'
+// });
+
+firebaseRef.child('app').update({
     name: 'Todo application'
 });
+firebaseRef.child('user').update({
+    name: 'Misha'
+});
+
