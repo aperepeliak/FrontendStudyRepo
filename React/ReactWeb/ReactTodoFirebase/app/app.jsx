@@ -14,7 +14,7 @@ import './../playground/index';
 
 store.subscribe(() => {
   let state = store.getState();
-  console.log('New state', state);
+  //console.log('New state', state);
   TodoAPI.setTodos(state.todos);
 });
 

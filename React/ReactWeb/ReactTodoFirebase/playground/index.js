@@ -75,5 +75,53 @@ let firebaseRef = firebase.database().ref();
     // firebaseRef.child('user/age').remove();
 */
 
+/* Fetching data */
+
+// snapshot has props: key, values
+// val() returns root object (the whole db)
+firebaseRef.once('value').then((snapshot) => {
+    console.log('Got entire database', snapshot.val());
+}, (e) => {console.log('unable to feth the data: ', e);});
+
+// to fetch the subset of db call child()
+firebaseRef.child('app').once('value').then((snapshot) => {
+    console.log('Key\t\t:', snapshot.key);
+    console.log('Value\t:', snapshot.val());
+}, (e) => {console.log('unable to feth the data: ', e);});
+
+// listening for changes
+// we can use on('value', ...) with root or any child reference
+// firebaseRef.on('value', (snapshot) => {
+//     console.log('Got value:', snapshot.val());
+// });
+
+// removing all listeners
+// firebaseRef.off();
+
+// better to define callbacks in separate function vars in order to be able to
+// add several listeners and be able to remove particular one if needed. Like this:
+// let logData = (snapshot) => {
+//     console.log('Got value:', snapshot.val());
+// };
+
+// firebaseRef.on('value', logData);
+// firebaseRef.off('value', logData);
+
+// mini-challenge
+let userChange = (snapshot) => {
+    console.log('User changed: ', snapshot.val());
+};
+firebaseRef.child('user').on('value', userChange);
+
+firebaseRef.child('user').update({
+    name: 'Sveta'
+});
+firebaseRef.child('app').update({
+    name: 'Application Todo'
+});
+
+
+
+
 
 

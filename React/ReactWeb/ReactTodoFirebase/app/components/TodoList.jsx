@@ -34,7 +34,6 @@ export let TodoList = React.createClass({
 // we wanna do a connection and we wanna connect it to TodoList
 export default connect(
     (state) => {
-        console.log(state);
         return state;
     }
 )(TodoList);
