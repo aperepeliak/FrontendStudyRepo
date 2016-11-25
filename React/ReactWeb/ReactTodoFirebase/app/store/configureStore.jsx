@@ -1,6 +1,9 @@
 /* jshint esversion: 6 */
-let redux = require('redux');
-let {searchTextReducer, showCompletedReducer, todosReducer} = require('reducers');
+
+// '* as _name_' means grab everything from the file in object named _name_. (when no default export provided)
+import * as redux from 'redux';
+import thunk from 'redux-thunk';
+import {searchTextReducer, showCompletedReducer, todosReducer} from 'reducers';
 
 export let configure = (initialState = {}) => {
     let reducer = redux.combineReducers({
@@ -10,6 +13,7 @@ export let configure = (initialState = {}) => {
     });
 
     let store = redux.createStore(reducer, initialState, redux.compose(
+        redux.applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f 
     ));
 

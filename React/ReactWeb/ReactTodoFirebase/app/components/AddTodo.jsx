@@ -14,7 +14,7 @@ export let AddTodo = React.createClass({
             this.refs.todoText.value = '';
             //this.props.onAddTodo(todoText);
 
-            dispatch(actions.addTodo(todoText));
+            dispatch(actions.startAddTodo(todoText));
         } else {
             // Put focus on an input control automatically
             this.refs.todoText.focus();
