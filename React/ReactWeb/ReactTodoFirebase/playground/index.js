@@ -87,7 +87,7 @@ let firebaseRef = firebase.database().ref();
     // firebaseRef.child('app').once('value').then((snapshot) => {
     //     console.log('Key\t\t:', snapshot.key);
     //     console.log('Value\t:', snapshot.val());
-    // }, (e) => {console.log('unable to feth the data: ', e);});
+    // }, (e) => {console.log('unable to fetch the data: ', e);});
 
     // // listening for changes
     // // we can use on('value', ...) with root or any child reference
