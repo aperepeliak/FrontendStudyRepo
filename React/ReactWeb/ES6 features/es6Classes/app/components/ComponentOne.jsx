@@ -18,11 +18,18 @@ let ComponentOne = React.createClass({
         count: React.PropTypes.number
     },
 
+    onClick() {
+        this.setState({
+            count: this.state.count + 1
+        });
+    },
+
     render() {
         return (
             <div>
                 <h3>Component One using React.createClass</h3>
                 <p>Current count: {this.state.count}</p>
+                <button className="button warning"onClick={this.onClick}>Button One</button>
             </div>
         );
 
