@@ -13,6 +13,9 @@ $(document).foundation();
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-  <p>Boilerplate 3 Project</p>,
+  <div>
+    <ComponentOne count={123} />
+    <ComponentTwo count={99} />
+  </div>,
   document.getElementById('app')
 );
