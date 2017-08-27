@@ -1,0 +1,7 @@
+<span class="glyphicon" 
+    [class.glyphicon-star]="isStarred" 
+    [class.glyphicon-star-empty]="!isStarred" 
+    (click)="isStarred = !isStarred">
+</span>
+<input type="text" placeholder="Enter movie..." [(ngModel)]="title">
+<span>{{ title | titleCase }}</span>
