@@ -10,6 +10,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { LikeComponent } from './like/like.component';
+import { ZippyComponent } from './zippy/zippy.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { LikeComponent } from './like/like.component';
     AuthorsComponent,
     FavoriteComponent,
     TitleCase,
-    LikeComponent
+    LikeComponent,
+    ZippyComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
